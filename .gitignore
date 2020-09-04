@@ -1,0 +1,12 @@
+*/**/__pycache__
+*/__pycache__
+__pycache__
+*/*.pyc
+*/**/*.pyc
+datasets/
+train_BF/
+valid_inp_BF/
+*.zip
+exp/
+debugger.py
+checkpoints/
