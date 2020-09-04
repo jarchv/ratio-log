@@ -683,6 +683,6 @@ class VGGDec(nn.Module):
             out        = self.conv_block1(out_concat)   
 
         out = self.conv2img(out)
-        out = self.out_act(out)
+        #out = self.out_act(out)
 
         return out  
