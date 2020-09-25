@@ -416,13 +416,13 @@ class RATIOLOGGAN(BaseModel):
         self.gen_loss.backward(retain_graph=True)	
 
     def backward_dis(self):
-#        if self.conf.att_gan:
-#            self.build_attention_map()
-#            dis_out_fake = self.Dis(self.fake_ratio.detach() * self.att_map)
-#            dis_out_real = self.Dis(self.real_ratio * self.att_map)          
-#        else:
-#            dis_out_fake = self.Dis(self.fake_ratio.detach())
-#            dis_out_real = self.Dis(self.real_ratio)
+        if self.conf.att_gan:
+            self.build_attention_map()
+            dis_out_fake = self.Dis(self.fake_ratio.detach() * self.att_map)
+            dis_out_real = self.Dis(self.real_ratio * self.att_map)          
+        else:
+            dis_out_fake = self.Dis(self.fake_ratio.detach())
+            dis_out_real = self.Dis(self.real_ratio)
 
 #        self.dis_loss_fake = self.criterion_gan(dis_out_fake, 'fake') # -log(1-D(x_hat)))
 #        self.dis_loss_real = self.criterion_gan(dis_out_real, 'real') # -log(D(x)))

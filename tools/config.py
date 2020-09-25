@@ -50,8 +50,8 @@ class Config:
         self.parser.add_argument('--batch_size', type=int, default=16, help='batch size')
         self.parser.add_argument('--epochs', type=int, default=100, help='number of epochs')
         self.parser.add_argument('--rec_lr', type=float, default=1e-4, help='learning rate in rec_loss.')
-        self.parser.add_argument('--gen_lr', type=float, default=1e-6, help='learning rate in Gen.')
-        self.parser.add_argument('--dis_lr', type=float, default=1e-6, help='learning rate in Dis.')
+        self.parser.add_argument('--gen_lr', type=float, default=1e-5, help='learning rate in Gen.')
+        self.parser.add_argument('--dis_lr', type=float, default=1e-5, help='learning rate in Dis.')
         self.parser.add_argument('--beta1', type=float, default=0.9, help='beta1 for Adam optimizer')
         self.parser.add_argument('--rec_loss', type=str, default='L2', help='Loss: L1, L2, ...')
 
