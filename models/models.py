@@ -406,26 +406,30 @@ class RATIOLOGGAN(BaseModel):
     def backward_gen(self):
         #self.gen_loss = self.criterion_gan(self.Dis(self.fake_Y), 'real') # -log(D(x_hat))
 
-        if self.conf.att_gan:
-            self.build_attention_map()
-            self.gen_loss = -self.criterion_gan(self.Dis(self.fake_ratio * self.att_map), 'fake') # log(1 - D(x_hat))
-        else:
-            self.gen_loss = -self.criterion_gan(self.Dis(self.fake_ratio), 'fake') # log(1 - D(x_hat))
-
+#        if self.conf.att_gan:
+#            self.build_attention_map()
+#            self.gen_loss = -self.criterion_gan(self.Dis(self.fake_ratio * self.att_map), 'fake') # log(1 - D(x_hat))
+#        else:
+#            self.gen_loss = -self.criterion_gan(self.Dis(self.fake_ratio), 'fake') # log(1 - D(x_hat))
+        
+        self.gen_loss = 0.5 * self.criterion(self.Dis(self.fake_ratio))
         self.gen_loss.backward(retain_graph=True)	
 
     def backward_dis(self):
-        if self.conf.att_gan:
-            self.build_attention_map()
-            dis_out_fake = self.Dis(self.fake_ratio.detach() * self.att_map)
-            dis_out_real = self.Dis(self.real_ratio * self.att_map)          
-        else:
-            dis_out_fake = self.Dis(self.fake_ratio.detach())
-            dis_out_real = self.Dis(self.real_ratio)
+#        if self.conf.att_gan:
+#            self.build_attention_map()
+#            dis_out_fake = self.Dis(self.fake_ratio.detach() * self.att_map)
+#            dis_out_real = self.Dis(self.real_ratio * self.att_map)          
+#        else:
+#            dis_out_fake = self.Dis(self.fake_ratio.detach())
+#            dis_out_real = self.Dis(self.real_ratio)
 
-        self.dis_loss_fake = self.criterion_gan(dis_out_fake, 'fake') # -log(1-D(x_hat)))
-        self.dis_loss_real = self.criterion_gan(dis_out_real, 'real') # -log(D(x)))
+#        self.dis_loss_fake = self.criterion_gan(dis_out_fake, 'fake') # -log(1-D(x_hat)))
+#        self.dis_loss_real = self.criterion_gan(dis_out_real, 'real') # -log(D(x)))
 
+        self.dis_loss_real = self.criterion(dis_out_real - 1.) 
+        self.dis_loss_fake = self.criterion(dis_out_fake + 1.)
+        
         self.dis_loss = 0.5 * (self.dis_loss_fake + self.dis_loss_real)
         self.dis_loss.backward()
 
