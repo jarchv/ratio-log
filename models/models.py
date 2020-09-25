@@ -373,6 +373,7 @@ class RATIOLOGGAN(BaseModel):
         self.dis_mode = True
         self.train_mode = train_mode
         self.build_model()
+        self.mse = nn.MSELoss()
 
     def compute_ratio(self):
         if self.conf.pretr == True:
@@ -412,7 +413,7 @@ class RATIOLOGGAN(BaseModel):
 #        else:
 #            self.gen_loss = -self.criterion_gan(self.Dis(self.fake_ratio), 'fake') # log(1 - D(x_hat))
         
-        self.gen_loss = 0.5 * self.criterion(self.Dis(self.fake_ratio))
+        self.gen_loss = 0.5 * self.mse(self.Dis(self.fake_ratio))
         self.gen_loss.backward(retain_graph=True)	
 
     def backward_dis(self):
@@ -427,8 +428,8 @@ class RATIOLOGGAN(BaseModel):
 #        self.dis_loss_fake = self.criterion_gan(dis_out_fake, 'fake') # -log(1-D(x_hat)))
 #        self.dis_loss_real = self.criterion_gan(dis_out_real, 'real') # -log(D(x)))
 
-        self.dis_loss_real = self.criterion(dis_out_real - 1.) 
-        self.dis_loss_fake = self.criterion(dis_out_fake + 1.)
+        self.dis_loss_real = self.mse(dis_out_real - 1.) 
+        self.dis_loss_fake = self.mse(dis_out_fake + 1.)
         
         self.dis_loss = 0.5 * (self.dis_loss_fake + self.dis_loss_real)
         self.dis_loss.backward()
