@@ -26,7 +26,9 @@ images.
 |![](imgs/input/People_282_flash.png)|![Synthetic ambient image](imgs/fake/People_282_synth.png)|![Ambient image](imgs/target/People_282_ambient.png)|
 |![](imgs/input/Shelves_196_flash.png)|![Synthetic ambient image](imgs/fake/Shelves_196_synth.png)|![Ambient image](imgs/target/Shelves_196_ambient.png)|
 |![](imgs/input/Objects_014_flash.png)|![Synthetic ambient image](imgs/fake/Objects_014_synth.png)|![Ambient image](imgs/target/Objects_014_ambient.png)|
-
+|![](imgs/input/Objects_078_flash.png)|![Synthetic ambient image](imgs/fake/Objects_078_synth.png)|![Ambient image](imgs/target/Objects_078_ambient.png)|
+|![](imgs/input/People_113_flash.png)|![Synthetic ambient image](imgs/fake/People_113_synth.png)|![Ambient image](imgs/target/People_113_ambient.png)|
+|![](imgs/input/Toys_379_flash.png)|![Synthetic ambient image](imgs/fake/Toys_379_synth.png)|![Ambient image](imgs/target/Toys_379_ambient.png)|
 ## Prerequisites
 
 * Linux
