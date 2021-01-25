@@ -280,7 +280,7 @@ class RATIO(BaseModel):
         self.train_mode = train_mode
         self.build_model()
 
-    def get_ratio(self):
+    def compute_ratio(self):
         if self.conf.pretr == True:
             self.build_real_X_inrange()
         else:
