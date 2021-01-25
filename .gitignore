@@ -10,3 +10,4 @@ valid_inp_BF/
 exp/
 debugger.py
 checkpoints/
+exp.py
