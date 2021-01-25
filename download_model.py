@@ -4,8 +4,8 @@ import zipfile
 
 from sys import stdout
 
-ID = '15ycOOjjOJ4KkwubC7g8Ttc5OvzClzM1C'
-DEST = 'model-1000.zip'
+ID = '1m2jzYF3ovPNdelZW13agTfmjjnEvCVNL'
+DEST = 'model-100.pth'
 
 def confirm_token(resp):
     for key, value in resp.cookies.items():
@@ -45,18 +45,20 @@ def download_drive_file(id, dest):
     save(dest, resp, id, curr_download_size)
     print('Done.')
 
-    if not os.path.exists('checkpoints/'):
-        os.makedirs('checkpoints/')
+    path = 'exp/RATIOLOG/try-1/depth_5/checkpoints'
+    if not os.path.exists(path):
+        os.makedirs(path)
 
-    try:
-        print('Unzipping...', end='')
-        stdout.flush()
+    os.rename(DEST, os.path.join(path, DEST))
+    #try:
+    #    print('Unzipping...', end='')
+    #    stdout.flush()
 
-        with zipfile.ZipFile(dest, 'r') as z:
-            z.extractall('checkpoints')
-        print('Done.')
-    except zipfile.BadZipfile:
-        warnings.warn('Ignoring `unzip` since "{}" does not look like a valid zip file'.format(file_id))
+    #   with zipfile.ZipFile(dest, 'r') as z:
+    #        z.extractall(path)
+    #    print('Done.')
+    #except zipfile.BadZipfile:
+    #    warnings.warn('Ignoring `unzip` since "{}" does not look like a valid zip file'.format(file_id))
 
 if __name__ == '__main__':
     download_drive_file(ID,DEST)
